@@ -4,6 +4,9 @@
 	for the Spheroidal wave functions developed by Adelman, Gumerov and Duraiswami
 	(see http://arxiv.org/abs/1408.0074).
 	
+	To use our code download to a folder the contents of folder Linux or Windows in accord to your operative
+	system. 
+	
 	In linux start a Julia shell from the command line and load it the file "JUL.main.jl": this loads the core
 	routines in "JUL.routines.jl" and auxiliary functions in "JUL.auxiliar.jl". Some example scripts are
 	provided for calculation of diverse cases of oblate and prolate far-field pattern in particular cases.
