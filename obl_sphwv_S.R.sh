@@ -1,6 +1,7 @@
 	# !/bin/bash
 
-	# Shell script for calculation of S and R in one point. The inputs are 'c', 'm', 'n', 'eta', 'xi' 
+	# Shell script for calculation of S and R in one point.
+	# The inputs are 'c', 'm', 'n', 'eta', 'xi' 
 	# Sintaxis:
 	# 	obl_sphwv_S.R.sh	c	m	n	eta	xi
 	#				$1	$2	$3	$4	$5

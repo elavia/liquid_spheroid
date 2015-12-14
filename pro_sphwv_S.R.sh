@@ -4,7 +4,7 @@
 	# The inputs are 'c', 'm', 'n', 'eta', 'xi' 
 	# Sintaxis:
 	# 	pro_sphwv_S.R.sh	c	m	n	eta	xi
-	#						$1	$2	$3	$4	$5
+	#				$1	$2	$3	$4	$5
 	
 	# Spheroidal prolate function parameters
 	source ./pro.parameters

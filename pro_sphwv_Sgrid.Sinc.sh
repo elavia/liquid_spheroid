@@ -1,6 +1,7 @@
 	# !/bin/bash
 
-	# Shell script for calculation of S (grid) and S incident. The inputs are 'c','m','n','eta_inc','grid_step'
+	# Shell script for calculation of S (grid) and S incident.
+	# The inputs are 'c','m','n','eta_inc','grid_step'
 	# Sintaxis:
 	#	pro_sphwv_Sgrid.Sinc.sh	c	m	n	eta_inc		grid_step
 	#				$1	$2	$3	$4		$5		
