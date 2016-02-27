@@ -24,11 +24,11 @@ Pkg.build("GSL")
 	but under certain circunstances one command or both fails miserably.
 	This is a bug related to a dependency on linux package gsl-devel. A workaround is to install previously
 	this package, via
-	
-||| $ sudo dnf install gsl-devel
-	
+```console
+sudo dnf install gsl-devel
+```
 	and then run 
-	
-||| $ sudo ldconfig
-
+```console
+sudo ldconfig
+```
 	to refresh the library database. And of course, update the Julia environment also.
