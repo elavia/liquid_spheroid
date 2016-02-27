@@ -111,6 +111,9 @@
 		const R3p_1 = zeros( Complex{BigFloat}, Size, 1) ;
 		const Alpha = zeros( BigFloat, M + 1, M + 1 ) ;
 		
+                const Norm0 = zeros(BigFloat, Size, 1) ; # 25-2-2016
+		const Norm1 = zeros(BigFloat, Size, 1) ; # 25-2-2016			
+		
 		# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		# 	Smn, Rmn calculation (Adelman-Gumerov-Duraiswami software)
 		# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -159,20 +162,24 @@
 			# Structure declaration
 			Q = zeros( Complex{BigFloat}, TAM, TAM ); 
 			F = zeros( Complex{BigFloat}, 1, TAM ); 
+			# Number of coefficients
+			NRO = round(Int64,(M+1)*m -(m-1)*m/2 ) ; # 25-2-2016
 			# Alpha matrix calculation
 			for i = 1 : TAM # fill in the rows
 				sigma = m + i - 1;
 				name = @ sprintf("%08d_%03d_%03d", trunc(Int,c_0*1000), m, sigma );
 				pro_lambdamn_approx( c_0, m, sigma ) ;
 				run(`./pro_sphwv_dr.N.sh $c_0 $m $sigma $name`) ;
-				Norm0 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+				# Norm0 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+				Norm0[ i + NRO ] = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;  # 25-2-2016
 				DR_0 = ReadFileToArrayBF( "Out_dr.dat", '\n', 0) ;
 				for j = 1 : TAM # fill in the columns
 					n = m + j - 1;
 					name = @ sprintf("%08d_%03d_%03d", trunc(Int,c_1*1000), m, n );
 					pro_lambdamn_approx( c_1, m, n ) ;
 					run(`./pro_sphwv_dr.N.sh $c_1 $m $n $name`) ;
-					Norm1 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+					# Norm1 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+					Norm1[ j + NRO ] = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;  # 25-2-2016
 					DR_1 = ReadFileToArrayBF( "Out_dr.dat", '\n', 0) ;
 					size_dr = min( length(DR_1) , length(DR_0) ) ; # Size of dr matrix
 					Alpha[i,j] = BigFloat(0) ;	
@@ -181,11 +188,9 @@
 						Alpha[i,j] += DR_0[k]*DR_1[k]*2*factorial( BigInt(2*(m)+r))/
 								( ( 2*m + 2*r + 1 )*factorial( BigInt(r) ) );
 					end
-					Alpha[i,j] = Alpha[i,j]/sqrt(Norm0*Norm1);
+					Alpha[i,j] = Alpha[i,j]/sqrt(Norm0[ i + NRO ]*Norm1[ j + NRO ]); # 25-2-2016
 				end 
 			end	
-			# Number of coefficients
-			NRO = round(Int64,(M+1)*m -(m-1)*m/2 ) ; 
 			# Amn calculation 
 			S1_null_flag = 1; # Smn null for default
 			for i = 1 : TAM
@@ -223,7 +228,8 @@
 				else
 					for i = 1 : TAM
 						Bmn[ j + NRO ] += Alpha[i,j]*( 1/(1im) )^(i-j)*( S1[NRO+i]/S1[NRO+j] )*
-								((R1_0[NRO+i] + Amn[ i+NRO ]*R3_0[NRO+i]))/R1_1[NRO+j]; 
+								((R1_0[NRO+i] + Amn[ i+NRO ]*R3_0[NRO+i]))/R1_1[NRO+j]*
+								sqrt(Norm0[ j + NRO ]/Norm1[ j + NRO ]); # 25-2-2016  
 					end 				
 				end		
 			end
@@ -401,6 +407,9 @@
 		const R3p_1 = zeros(Complex{BigFloat}, Size, 1) ;
 		const Alpha = zeros( BigFloat, M + 1, M + 1 ) ;
 		
+		const Norm0 = zeros(BigFloat, Size, 1) ; # 25-2-2016
+		const Norm1 = zeros(BigFloat, Size, 1) ; # 25-2-2016		
+		
 		# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 		# 	Smn, Rmn calculation (Adelman-Duraiswami-Gumerov software)
 		# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
@@ -447,15 +456,18 @@
 		for m = 0 : M # Start with the M + 1 size matrix
 			TAM = M - m + 1; # Structure's size for this 'm'
 			# Structure declaration
-			Q = zeros( Complex{BigFloat}, TAM, TAM ); # Matriz de ceros correspondiente a
-			F = zeros( Complex{BigFloat}, 1, TAM ); # Vector correspondiente F	(es fila)	
+			Q = zeros( Complex{BigFloat}, TAM, TAM );
+			F = zeros( Complex{BigFloat}, 1, TAM ); 
+			# Number of coefficients
+			NRO = round(Int64,(M+1)*m -(m-1)*m/2 ) ; # 25-2-2016
 			# Alpha matrix calculation
 			for i = 1 : TAM # fill in the rows
 				sigma = m + i - 1;
 				name = @ sprintf("%08d_%03d_%03d", trunc(Int,c_0*1000), m, sigma );
 				obl_lambdamn_approx( c_0, m, sigma ) ;
 				run( `./obl_sphwv_dr.N.sh $c_0 $m $sigma $name` );
-				Norm0 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+				# Norm0 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+				Norm0[ i + NRO ] = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;  # 25-2-2016
 				DR_0 = ReadFileToArrayBF( "Out_dr.dat", '\n', 0) ;
 				# Ciclo de 'j' 
 				for j = 1 : TAM # fill in the columns
@@ -463,7 +475,8 @@
 					name = @ sprintf("%08d_%03d_%03d", trunc(Int,c_1*1000), m, n );
 					obl_lambdamn_approx( c_1, m, n ) ;
 					run( `./obl_sphwv_dr.N.sh $c_1 $m $n $name` ) ;
-					Norm1 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+					# Norm1 = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;
+					Norm1[ j + NRO ] = ReadFileToArrayBF( "Out_S_N.dat", '\n', 1) ;  # 25-2-2016
 					DR_1 = ReadFileToArrayBF( "Out_dr.dat", '\n', 0) ;
 					size_dr = min( length(DR_1) , length(DR_0) );
 					Alpha[i,j] = BigFloat(0) ;	
@@ -472,11 +485,9 @@
 						Alpha[i,j] += DR_0[k]*DR_1[k]*2*factorial( BigInt(2*(m)+r))/
 								( ( 2*m + 2*r + 1 )*factorial( BigInt(r) ) );
 					end
-					Alpha[i,j] = Alpha[i,j]/sqrt(Norm0*Norm1);
+					Alpha[i,j] = Alpha[i,j]/sqrt(Norm0[ i + NRO ]*Norm1[ j + NRO ]);  # 25-2-2016
 				end 
 			end	
-			# Number of coefficients
-			NRO = round(Int64,(M+1)*m -(m-1)*m/2 ) ; 
 			# Amn calculation 
 			S1_null_flag = 1;  # Smn null for default
 			for i = 1 : TAM
@@ -514,7 +525,8 @@
 				else
 					for i = 1 : TAM
 						Bmn[ j + NRO ] += Alpha[i,j]*( 1/(1im) )^(i-j)*( S1[NRO+i]/S1[NRO+j] )*
-								((R1_0[NRO+i] + Amn[ i+NRO ]*R3_0[NRO+i]))/R1_1[NRO+j]; 
+								((R1_0[NRO+i] + Amn[ i+NRO ]*R3_0[NRO+i]))/R1_1[NRO+j]*
+								sqrt(Norm0[ j + NRO ]/Norm1[ j + NRO ]); # 25-2-2016   
 					end 				
 				end		
 			end
