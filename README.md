@@ -26,10 +26,10 @@ Pkg.build("GSL")
 	this package, via
 	
 ```sh
-sudo dnf install gsl-devel
+$ sudo dnf install gsl-devel
 ```	
 	and then run 
 ```bash	
-sudo ldconfig
+$ sudo ldconfig
 ```
 	to refresh the library database. And of course, update the Julia environment also.
