@@ -1,5 +1,4 @@
-	#Liquid Spheroid codes
-	
+#Liquid Spheroid codes
 	Julia and C++ code for the acoustic Helmholtz equation applied to liquid spheroids (prolate and oblate).
 	This code calculates the scattering far-field acoustic pressure pattern using the software executables 
 	for the Spheroidal wave functions developed by Adelman, Gumerov and Duraiswami
@@ -14,7 +13,7 @@
 	These examples are based in the material exhibited in a paper submitted to Acta Acustica United with
 	Acustica and in the near future probably to arXiv too.
 	
-	##GSL package on Julia
+##GSL package on Julia
 	
 	The Julia codes uses the "GSL" (GNU Scientific Library) package for a marginal routine.
 	The basic setup implies:
