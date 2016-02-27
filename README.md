@@ -25,7 +25,7 @@ Pkg.build("GSL")
 	This is a bug related to a dependency on linux package gsl-devel. A workaround is to install previously
 	this package, via
 	
-```bash
+```sh
 sudo dnf install gsl-devel
 ```	
 	and then run 
