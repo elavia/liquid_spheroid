@@ -17,7 +17,9 @@
 	
 ##License
 
-	The scattering executables (pro_sphwv, obl_sphwv) are Copyright (c) 2014, Ross Adelman, Nail A. Gumerov, and Ramani 		Duraiswami, and were released under the BSD 2-Clause License (http://opensource.org/licenses/BSD-2-Clause).
+	The scattering executables (pro_sphwv, obl_sphwv) are Copyright (c) 2014, Ross Adelman, Nail A. Gumerov, 
+	and Ramani Duraiswami, and were released under the BSD 2-Clause License 
+	(http://opensource.org/licenses/BSD-2-Clause).
 	
 ##GSL package on Julia
 	
