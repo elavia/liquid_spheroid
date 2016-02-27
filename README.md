@@ -17,10 +17,10 @@
 	
 	The Julia codes uses the "GSL" (GNU Scientific Library) package for a marginal routine.
 	The basic setup implies:
-	
+```
 	julia > Pkg.add("GSL")
 	julia > Pkg.build("GSL")
-	
+```
 	but under certain circunstances one command or both fails miserably.
 	This is a bug related to a dependency on linux package gsl-devel. A workaround is to install previously
 	this package, via
