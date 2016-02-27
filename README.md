@@ -10,4 +10,21 @@
 	In linux start a Julia shell from the command line and load it the file "JUL.main.jl": this loads the core
 	routines in "JUL.routines.jl" and auxiliary functions in "JUL.auxiliar.jl". Some example scripts are
 	provided for calculation of diverse cases of oblate and prolate far-field pattern in particular cases.
-	These examples are based in the material exhibited in XXXX (journal of computational physics).
+	These examples are based in the material exhibited in a paper submitted to Acta Acustica United with
+	Acustica and in the near future probably to arXiv too.
+	
+	The Julia codes uses the "GSL" (GNU Scientific Library) package for a marginal routine.
+	Under certain circunstances the command 
+	
+	julia > Pkg.add("GSL")
+	
+	fails. This is a bug related to a dependency on gsl-devel. A workaround is to install previously this
+	package, via
+	
+	$ sudo dnf install gsl-devel
+	
+	and then run 
+	
+	$ sudo ldconfig
+	
+	to refresh the library database. And of course, update the Julia environment also.
