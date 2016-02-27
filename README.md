@@ -17,18 +17,20 @@
 	
 	The Julia codes uses the "GSL" (GNU Scientific Library) package for a marginal routine.
 	The basic setup implies:
-```
-	julia > Pkg.add("GSL")
-	julia > Pkg.build("GSL")
+```julia
+Pkg.add("GSL")
+julia
+Pkg.build("GSL")
 ```
 	but under certain circunstances one command or both fails miserably.
 	This is a bug related to a dependency on linux package gsl-devel. A workaround is to install previously
 	this package, via
 	
-	$ sudo dnf install gsl-devel
-	
+```
+sudo dnf install gsl-devel
+```	
 	and then run 
-	
-	$ sudo ldconfig
-	
+```	
+sudo ldconfig
+```
 	to refresh the library database. And of course, update the Julia environment also.
