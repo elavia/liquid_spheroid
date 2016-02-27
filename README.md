@@ -25,10 +25,10 @@ Pkg.build("GSL")
 	This is a bug related to a dependency on linux package gsl-devel. A workaround is to install previously
 	this package, via
 ```console
-sudo dnf install gsl-devel
+$ sudo dnf install gsl-devel
 ```
 	and then run 
 ```console
-sudo ldconfig
+$ sudo ldconfig
 ```
 	to refresh the library database. And of course, update the Julia environment also.
