@@ -6,14 +6,14 @@
 	Duraiswami available at https://github.com/radelman/scattering.git (see http://arxiv.org/abs/1408.0074
 	for further details).
 	
-	To use our code download to a folder the contents of folder Linux or Windows in accord to your operative
-	system. In Linux it can be neccesary to give execution rights to the executables and the shell scripts.
+	To use our code download to a folder the contents of folder Linux or Windows according to your operative
+	system. In Linux it can be necessary to give execution rights to the executables and the shell scripts.
 	
-	In linux start a Julia shell from the command line and load it the file "JUL.main.jl": this loads the core
+	In linux start a Julia shell from the command line and load the file "JUL.main.jl": this loads the core
 	routines in "JUL.routines.jl" and auxiliary functions in "JUL.auxiliar.jl". Some example scripts are
-	provided for calculation of diverse cases of oblate and prolate far-field pattern in particular cases.
-	These examples are based in the material exhibited in a paper submitted to Acta Acustica United with
-	Acustica and in the near future probably to arXiv too.
+	provided for calculation of diverse cases of oblate and prolate far-field patterns in particular cases.
+	These examples are based on the material exhibited in a paper submitted to Acta Acustica United with
+	Acustica and also in the one that will be probably at arXiv in the near future.
 	
 ##License
 
@@ -29,7 +29,7 @@
 Pkg.add("GSL")
 Pkg.build("GSL")
 ```
-	but under certain circunstances one command or both fails miserably.
+	but under certain circumstances one command or both fail miserably.
 	This is a bug related to a dependency on linux package gsl-devel. A workaround is to install previously
 	this package, via
 ```console
