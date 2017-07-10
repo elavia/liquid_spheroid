@@ -1,4 +1,4 @@
-#Liquid Spheroid codes
+# Liquid Spheroid codes
 
 	Julia and C++ code for calculations of acoustic scattering by liquid spheroids (prolate and oblate).
 	This code calculates the scattering far-field acoustic pressure pattern using the software executables
@@ -15,13 +15,13 @@
 	These examples are based on the material exhibited in a paper submitted to Acta Acustica United with
 	Acustica and also in the one that will be probably at arXiv in the near future.
 	
-##License
+## License
 
 	The scattering executables (pro_sphwv, obl_sphwv) are Copyright (c) 2014, Ross Adelman, Nail A. Gumerov, 
 	and Ramani Duraiswami, and were released under the BSD 2-Clause License 
 	(http://opensource.org/licenses/BSD-2-Clause).
 	
-##GSL package on Julia
+## GSL package on Julia
 	
 	The Julia codes uses the "GSL" (GNU Scientific Library) package for a marginal routine.
 	The basic setup implies:
