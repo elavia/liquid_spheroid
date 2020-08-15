@@ -1,3 +1,0 @@
-# !/bin/bash
-
-/bin/svn --password 0a9d97bce92abfaadc63cfb882a0ac2f4a1cacf3 commit --message "Update"
